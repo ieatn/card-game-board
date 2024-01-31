@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import Deck from './Deck';
+import Grid from './Grid';
 
 function App() {
   return (
-    <Deck />
+    <Grid />
   );
 }
 

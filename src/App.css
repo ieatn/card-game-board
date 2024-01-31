@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
+
+.grid {
+  width: 1000px;
+  height: 600px;
+  background-color: antiquewhite;
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(3, auto); /* Three columns */
+  grid-template-rows: repeat(2, auto); /* Two rows */
+  grid-auto-flow: column; /* default setting; can be omitted */
+  gap: 10px; /* Adjust gap between grid items */
+}
+
+.grid > *:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / span 2; /* Make it span two rows */
+  place-self: center; /* Center the content */
+}
+
+/* DECK */
+.deck-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px dashed #ccc;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.deck-button {
+  position: relative;
+  width: 150px;
+  height: 200px;
+  background-color: #4a90e2;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.deck-button:hover {
+  background-color: #3572b0;
+}
+
+/* CARD */
+
+.deck {
+  position: relative;
+  width: 150px;
+  height: 200px;
+}
+
+.card-container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  transition: transform 0.5s ease; /* Apply smooth transition for flipping effect and movement */
+}
+
+.card {
+  position: absolute; /* Set the card position to absolute */
+  top: 0; /* Position the card at the top of the container */
+  left: 0; /* Position the card at the left of the container */
+  width: 150px;
+  height: 200px;
+  perspective: 1000px; /* Define the perspective for 3D effect */
+  cursor: pointer;
+  transition: transform 0.5s ease; /* Apply smooth transition for flipping effect and movement */
+}
+
+.card.flipped .front {
+  transform: rotateY(180deg); /* Rotate the front face when flipped */
+}
+
+.card.flipped .back {
+  transform: rotateY(0deg); /* Bring the back face to the front when flipped */
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden; /* Hide the back face during rotation */
+  transition: transform 0.5s ease; /* Apply smooth transition for flipping effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px; /* Add border-radius for rounded corners */
+}
+
+.front {
+  background-color: #3490dc;
+  color: white;
+}
+
+.back {
+  background-color: #38a169;
+  color: white;
+  transform: rotateY(-180deg); /* Initially hide the back face */
+}
+
+/* Add this class to move the card down */
+.card.down {
+  transform: translate(200%, 50%);
+}
+
+.card.up {
+  transform: translate(200%, -50%);
+}
