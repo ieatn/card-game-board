@@ -5,37 +5,36 @@ import './App.css';
 
 
 const Deck = ({deck}) => {
-  const [cards, setCards] = useState(deck)
-  const [selectedCard, setSelectedCard] = useState(null);
 
-  const pullCard = () => {
-    if (cards.length > 0) {
-      const selected = cards.shift(); // Remove the top card from the deck
-      setSelectedCard(selected);
-      setCards([...cards]); // Update the deck
-    }
-  };
+ const [currentDeck, setCurrentDeck] = useState(deck);
+ const [isTranslated, setIsTranslated] = useState(false);
 
-  return (
-    <div className='deck-container'>
-      <div className="button-container">
-        {cards.length > 0 && (
-          <div
-            onClick={pullCard}
-            className='deck-button'
-          >
-            Deck
-          </div>
-        )}
-      </div>
-      {selectedCard && (
-        <div className='card-container'>
-          <Card frontText={selectedCard.frontText} backText={selectedCard.backText} />
-        </div>
-      )}
-    </div>
-  );
+ const pullCard = () => {
+   if (currentDeck.length > 0) {
+     // Remove the card from the top of the deck
+     const newDeck = [...currentDeck];
+     newDeck.shift(); // Remove the first card
+     setCurrentDeck(newDeck);
+     setIsTranslated(true);
+   } else {
+     console.log("Deck is empty!");
+   }
+ };
+
+ return (
+   <>
+     <button onClick={pullCard}>draw 1 ({currentDeck.length})</button>
+     <div className="deck">
+       <div className={`card ${isTranslated ? 'translate-right' : ''}`}>
+         {currentDeck.map((item) => (
+           <Card frontText={item.frontText} backText={item.backText} />
+         ))}
+       </div>
+     </div>
+   </>
+ 
+ );
 };
 
-export default Deck;
 
+export default Deck;
