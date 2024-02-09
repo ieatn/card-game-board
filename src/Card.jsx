@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-const Card = ({ frontText, backText, onDragEnd, onDragStart, handleDragStart, handleDragEnd }) => {
+const Card = ({ frontText, backText, id }) => {
   const [flip, setFlip] = useState(false);
   const [slide, setSlide] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(0)
-
 
   const flipCard = () => {
-    if (!slide) {
-      setSlide(true); // Set the card permanently down when clicked for the first time
-    } else {
-      setFlip(!flip); // Flip the card on subsequent clicks
-    }
+    setFlip(!flip);
+  };
+
+  const dragStart = (e) => {
+    const target = e.target;
+    e.dataTransfer.setData("card_id", target.id);
+    setTimeout(() => {
+      target.style.display = "none";
+    }, 0);
+  };
+
+  const dragOver = (e) => {
+    e.stopPropagation();
   };
 
   return (
-    <div className={`card  ${flip ? 'flip' : ''} ${slide ? 'slide' : ''}`} onClick={flipCard} draggable onDragStart={handleDragStart}
-    onDragEnd={handleDragEnd}>
-      <div className='card-front'>
+    <div
+      id={id}
+      className={`card  ${flip ? "flip" : ""}`}
+      onClick={flipCard}
+      draggable
+      onDragStart={dragStart}
+      onDragOver={dragOver}
+    >
+      <div className="card-front">
         <p>{frontText}</p>
       </div>
       <div className="card-back">
