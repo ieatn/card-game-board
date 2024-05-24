@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Card from "./Card";
 import Board from "./Board";
+import { Paper, Grid, Box } from '@mui/material';
 
 function App() {
 
@@ -53,54 +54,71 @@ function App() {
 
   return (
     <div className="app">
-      <div className="flex container">
-        <div className="flex-col">
-          <div className="flex">
-            <Board id="board-1" className="board">
-              {deck.slice(0, Math.ceil(deck.length / 2)).map((card, index) => {
-                return (
+      <Paper elevation={24} style={{ width: 740, height: 576, padding: 20, borderRadius: 20 }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12}>
+          <Grid container spacing={0}>
+            <Grid item xs={4}>
+              <Board id="board-1" className="board">
+                {deck.slice(0, Math.ceil(deck.length / 2)).map((card, index) => (
                   <Card
                     key={index}
                     id={`card-${index}`}
                     frontText={card.frontText}
                     backText={card.backText}
                   />
-                );
-              })}
-            </Board>
-            <Board id="board-2" className="board"></Board>
-            <Board id="board-3" className="board"></Board>
-          </div>
-
-          <div className="flex">
-            <Board id="board-4" className="board">
-              {deck.slice(Math.ceil(deck.length / 2)).map((card, index) => {
-                let cardClass = "card";
-
-                if (index !== deck.length - 1) {
-                  cardClass += " not-last-child";
-                }
-                return (
-                  <Card
-                    key={index}
-                    id={`card-${index}`}
-                    frontText={card.frontText}
-                    backText={card.backText}
-                    className={cardClass}
-                  />
-                );
-              })}
-            </Board>
-            <Board id="board-5" className="board"></Board>
-            <Board id="board-6" className="board"></Board>
-          </div>
-        </div>
-
-        <div className="flex-col">
-          <Board id="board-7" className="board"></Board>
-          <Board id="board-8" className="board"></Board>
-        </div>
-      </div>
+                ))}
+              </Board>
+            </Grid>
+            <Grid item xs={4}>
+              <Board id="board-2" className="board"></Board>
+            </Grid>
+            <Grid item xs={4}>
+              <Board id="board-3" className="board"></Board>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={0}>
+            <Grid item xs={4}>
+              <Board id="board-4" className="board">
+                {deck.slice(Math.ceil(deck.length / 2)).map((card, index) => {
+                  let cardClass = "card";
+                  if (index !== deck.length - 1) {
+                    cardClass += " not-last-child";
+                  }
+                  return (
+                    <Card
+                      key={index}
+                      id={`card-${index}`}
+                      frontText={card.frontText}
+                      backText={card.backText}
+                      className={cardClass}
+                    />
+                  );
+                })}
+              </Board>
+            </Grid>
+            <Grid item xs={4}>
+              <Board id="board-5" className="board"></Board>
+            </Grid>
+            <Grid item xs={4}>
+              <Board id="board-6" className="board"></Board>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={0}>
+            <Grid item xs={4}>
+              <Board id="board-7" className="board"></Board>
+            </Grid>
+            <Grid item xs={4}>
+              <Board id="board-8" className="board"></Board>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Paper>
     </div>
   );
 }

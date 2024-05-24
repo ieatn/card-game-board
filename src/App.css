@@ -5,8 +5,8 @@
 }
 
 .card {
-  width: 150px;
-  height: 250px;
+  width: 100px;
+  height: 150px;
   perspective: 1000px;
   cursor: pointer;
   transition: transform 0.5s ease;
@@ -42,7 +42,7 @@
 }
 
 .card-front {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .card-front,
@@ -59,7 +59,6 @@
   backface-visibility: hidden;
   transition: transform 0.5s ease;
   border-radius: 8px;
-  padding: 1rem;
 }
 .app {
   /* border: 1px solid red; */
@@ -69,97 +68,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
 }
 .board {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 175px;
-  height: 250px;
-  padding: 10px;
+  width: 120px;
+  height: 170px;
   background-color: #eee;
   border: 2px dashed #999;
   border-radius: 15px;
 }
-.flex {
-  display: flex;
-  margin: 25px 0;
-  gap: 100px;
-}
-.container {
-  /* border: solid green 1px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.flex-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.btn {
-  width: 100%;
-}
 
-/* Modal */
-.modal {
-  display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 8px;
-}
-
-/* Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* All Cards Container */
-.all-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-
-/* Define your initial styles here */
-
-/* Media query for screens larger than 1024px (typical laptops) */
-@media only screen and (min-width: 900px) {
-  .card {
-    max-width: 120px; /* Reduce the maximum width of cards */
-    height: 200px; /* Reduce the height of cards */
-  }
-
-  .board {
-    max-width: 250px; /* Reduce the maximum width of the board */
-  }
-}
